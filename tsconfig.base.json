@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": "./kata-monorepo",
     "paths": {
+      "@kata-monorepo/roman-numerals": ["libs/roman-numerals/src/index.ts"],
       "@kata-monorepo/tennis": ["libs/tennis/src/index.ts"]
     }
   },

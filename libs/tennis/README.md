@@ -34,7 +34,7 @@ This version of tennis is similar to how WiiSports implements the game.
 ## Before you start
 
 The idea here is to think of the best approach to this kata but the solution.
-You have **1 hour** to work on this kata. If you unsure how to breakdown the task here are some pointers:
+You have **1 hour** to work on this kata. If you unsure how to break down the task here are some pointers:
 1. Able to start the tennis match with two players
 2. Able to finish a game
 3. Able to finish a match with a best of 3 games

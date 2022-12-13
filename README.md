@@ -18,7 +18,7 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 ### List of Katas
 - Tennis
-- Roman Numbers (TBD)
+- Roman Numerals
 - Mars Rover (TBD)
 - Bowling (TBD)
 - Fizz Buzz (TBD)
