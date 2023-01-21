@@ -25,6 +25,7 @@ The Romans used letters to represent their numbers.
 ## Before you start
 
 The idea here is to think of the best approach to this kata but the solution.
+
 You have **1 hour** to work on this kata. If you unsure how to break down the task here are some pointers:
 1. Able to convert the number '1' to a Roman numeral
 2. Able to convert numbers '1-10' to a Roman numeral

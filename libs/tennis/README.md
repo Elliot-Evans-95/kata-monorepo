@@ -10,6 +10,10 @@ Run `nx test tennis` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx lint tennis` to execute the lint via [ESLint](https://eslint.org/).
 
+## Tags
+
+#Incremental-Kata
+
 ## About this Kata
 
 > **_This is based on the [codingdojo](https://codingdojo.org/kata/Tennis/) tennis kata_**

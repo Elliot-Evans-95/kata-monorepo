@@ -1,0 +1,84 @@
+{
+  "name": "dark-theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/dark-theme/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/lib/dark-theme",
+        "index": "libs/dark-theme/src/index.html",
+        "baseHref": "/",
+        "main": "libs/dark-theme/src/main.tsx",
+        "polyfills": "libs/dark-theme/src/polyfills.ts",
+        "tsConfig": "libs/dark-theme/tsconfig.lib.json",
+        "assets": [
+          "libs/dark-theme/src/favicon.ico",
+          "libs/dark-theme/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "libs/dark-theme/src/environments/environment.ts",
+              "with": "libs/dark-theme/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dark-theme:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "dark-theme:build:development"
+        },
+        "production": {
+          "buildTarget": "dark-theme:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/dark-theme/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/dark-theme/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

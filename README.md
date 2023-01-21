@@ -17,23 +17,25 @@ Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 ### List of Katas
-- Tennis
-- Roman Numerals
-- Mars Rover (TBD)
-- Bowling (TBD)
-- Fizz Buzz (TBD)
-- Minefield (TBD)
-- String Calculator (TBD)
-- Wordle (TBD)
-- Gilded Rose (TBD) [Refactor Kata]
+- Tennis [Incremental Kata]
+- Roman Numerals [Incremental Kata]
+- Mars Rover [Incremental Kata]
+- Bowling [Incremental Kata]
+- Fizz Buzz [Incremental Kata]
+- Minefield [React app Kata]
+- String Calculator [Incremental Kata]
+- Wordle [React app Kata]
+- Leap Years [Other Kata]
+- Opening ~~Hours~~ Times [link](https://github.com/christian-fei/opening-hours-kata) [Incremental Kata]
+- Dark Theme [React hooks kata]
+- Tic Tac Toe [React app Kata]
+- Theatrical Players [Refactor Kata]
+
+### Coming soon
+- Gilded Rose [Refactor Kata] (TBD)
 - Birthday Greetings (TBD)
-- Leap Years (TBD)
-- Racing Cars (TBD) [link](https://github.com/emilybache/Racing-Car-Katas) [Refactor Kata]
-- Opening Hours (TBD) [link](https://github.com/christian-fei/opening-hours-kata)
-- Dark Theme (TBD) [React hooks kata]
-- Tic Tac Toe (TBD) [React app Kata]
-- Movie Rental (TBD)
-- Theatrical Players (TBD) [Refactor Kata]
+- Racing Cars [link](https://github.com/emilybache/Racing-Car-Katas) [Refactor Kata] (TBD)
+- Movie Rental [Refactor Kata] (TBD)
 - Mars Sheep (TBD) [React hooks kata]
 - Euro Millions (TBD) [React app Kata]
 

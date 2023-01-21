@@ -15,8 +15,23 @@
     "skipDefaultLibCheck": true,
     "baseUrl": "./kata-monorepo",
     "paths": {
+      "@kata-monorepo/bowling": ["libs/bowling/src/index.ts"],
+      "@kata-monorepo/dark-theme": ["libs/dark-theme/src/index.ts"],
+      "@kata-monorepo/fizz-buzz": ["libs/fizz-buzz/src/index.ts"],
+      "@kata-monorepo/leap-years": ["libs/leap-years/src/index.ts"],
+      "@kata-monorepo/mars-rover": ["libs/mars-rover/src/index.ts"],
+      "@kata-monorepo/minefield": ["libs/minefield/src/index.ts"],
+      "@kata-monorepo/opening-times": ["libs/opening-times/src/index.ts"],
       "@kata-monorepo/roman-numerals": ["libs/roman-numerals/src/index.ts"],
-      "@kata-monorepo/tennis": ["libs/tennis/src/index.ts"]
+      "@kata-monorepo/string-calculator": [
+        "libs/string-calculator/src/index.ts"
+      ],
+      "@kata-monorepo/tennis": ["libs/tennis/src/index.ts"],
+      "@kata-monorepo/theatrical-players": [
+        "libs/theatrical-players/src/index.ts"
+      ],
+      "@kata-monorepo/tic-tac-toe": ["libs/tic-tac-toe/src/index.ts"],
+      "@kata-monorepo/wordle": ["libs/wordle/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
