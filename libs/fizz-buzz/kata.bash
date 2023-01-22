@@ -121,19 +121,30 @@ while [ $KataNotComplete ]; do
         if npm run test "$Name" 2>&1 | grep -q "$FailMessage"; then
                   HighestNumberOfSuccessfulCommits=$NumberOfSuccessfulCommits
                   NumberOfSuccessfulCommits=0
+
                   git stash push --quiet --message "$BranchName" "*.spec.*"
                   git checkout -- .
                   git stash pop --quiet --index 0
+
                   echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
                   printf "\n"
         else
-                  NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
-                  git add .
-                  git commit --message "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
-                  git push -u origin "$BranchName"
-                  printf "\n"
-                  echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
-                  printf "\n"
+                  # shellcheck disable=SC2046
+                  if [ $(git status --porcelain | wc -l) -eq "0" ]; then
+                    NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
+
+                    git add .
+                    git commit --quiet --message "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
+                    git push --quiet -u origin "$BranchName"
+
+                    echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
+                    printf "\n"
+                  else
+                    echo "KEEP GOING! | Cannot find any changes skipping commit"
+                    printf "\n"
+                  fi
+
+
         fi
   fi
 
