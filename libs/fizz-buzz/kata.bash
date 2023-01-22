@@ -13,35 +13,35 @@ HighestNumberOfSuccessfulCommits=0
 KataNotComplete=true
 FailMessage="FAIL"
 
-while getopts "n:" arg; do
-  case $arg in
-    n) Name=$OPTARG;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      exit 1
-      ;;
-    *) break;;
-  esac
-done
-
-while getopts "t:" arg; do
-  case $arg in
-    t) Time=$OPTARG;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      exit 1
-      ;;
-    *) break;;
-  esac
-done
+#while getopts "n:" arg; do
+#  case $arg in
+#    n) Name=$OPTARG;;
+#    \?)
+#      echo "Invalid option: -$OPTARG" >&2
+#      exit 1
+#      ;;
+#    :)
+#      echo "Option -$OPTARG requires an argument." >&2
+#      exit 1
+#      ;;
+#    *) break;;
+#  esac
+#done
+#
+#while getopts "t:" arg; do
+#  case $arg in
+#    t) Time=$OPTARG;;
+#    \?)
+#      echo "Invalid option: -$OPTARG" >&2
+#      exit 1
+#      ;;
+#    :)
+#      echo "Option -$OPTARG requires an argument." >&2
+#      exit 1
+#      ;;
+#    *) break;;
+#  esac
+#done
 
 echo "Welcome to the $Name Kata..."
 sleep 1
@@ -103,6 +103,8 @@ sleep 1
 echo "1"
 sleep 1
 echo "Start!"
+printf "\n"
+
 while [ $KataNotComplete ]; do
   echo "Successful commits: $NumberOfSuccessfulCommits"
   echo "When you have finished the kata Press the f key"
@@ -119,15 +121,15 @@ while [ $KataNotComplete ]; do
         if npm run test "$Name" 2>&1 | grep -q "$FailMessage"; then
                   HighestNumberOfSuccessfulCommits=$NumberOfSuccessfulCommits
                   NumberOfSuccessfulCommits=0
-                  git stash push -m "$BranchName" "*.spec.*"
+                  git stash push --quiet --message "$BranchName" "*.spec.*"
                   git checkout -- .
-                  git apply --index 1
+                  git stash pop --quiet --index 0
                   echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
                   printf "\n"
         else
                   NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
                   git add .
-                  git commit -m "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
+                  git commit --message "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
                   git push -u origin "$BranchName"
                   printf "\n"
                   echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
