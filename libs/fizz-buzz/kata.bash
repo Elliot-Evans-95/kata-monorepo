@@ -5,10 +5,14 @@ GitName=$(git config user.name)
 GitNameWithoutWhitespace=$(echo "$GitName" | tr -d '[:space:]')
 Name="fizz-buzz"
 BranchName="$Name-kata-$GitNameWithoutWhitespace-$LocalTime"
-TimeInSeconds=300
+#TimeInSeconds=300
+TimeInSeconds=5
 TimeInMinutes=$((TimeInSeconds/60))
 NumberOfSuccessfulCommits=0
-KataStarted=0
+HighestNumberOfSuccessfulCommits=0
+KataNotComplete=true
+FailMessage="FAIL"
+#RunTest=$( (npm run test "$Name"))
 
 while getopts "n:" arg; do
   case $arg in
@@ -80,7 +84,8 @@ select yn in "Yes" "No"; do
 done
 printf "\n"
 sleep 1
-echo "Creating branch called $BranchName and setting default time to $TimeInSeconds..."
+echo "Creating branch called $BranchName and setting default time to $TimeInMinutes minutes..."
+git checkout -b "$BranchName"
 printf "\n"
 sleep 2
 echo "Ready?"
@@ -90,6 +95,7 @@ select yn in "Yes" "No"; do
         No ) exit;;
     esac
 done
+printf "\n"
 sleep 1
 echo "3"
 sleep 1
@@ -97,5 +103,38 @@ echo "2"
 sleep 1
 echo "1"
 sleep 1
-echo "Start! | Successful commits: $NumberOfSuccessfulCommits | Kata started $KataStarted"
-echo "When you have finished the kata Press the f key"
+echo "Start!"
+while [ $KataNotComplete ]; do
+  echo "Successful commits: $NumberOfSuccessfulCommits"
+  echo "When you have finished the kata Press the f key"
+  printf "\n"
+
+  sleep $TimeInSeconds
+
+read -r TestOutput <<< "$( npm run test "$Name")"
+#read -r TestOutput <<< "test"
+printf "\n"
+echo "OUTPUT: $TestOutput"
+printf "\n"
+echo "MESSAGE: $FailMessage"
+
+case $FailMessage in
+    *"$TestOutput"*)
+      HighestNumberOfSuccessfulCommits=$NumberOfSuccessfulCommits
+      NumberOfSuccessfulCommits=0
+      git checkout !(*.spec.*)
+      echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
+      printf "\n"
+      ;;
+    *)
+      NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
+      git commit -m "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
+      git push -u origin "$BranchName"
+      printf "\n"
+      echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
+      printf "\n"
+      ;;
+esac
+
+
+done
