@@ -129,8 +129,9 @@ while [ $KataNotComplete ]; do
                   echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
                   printf "\n"
         else
-                  # shellcheck disable=SC2046
-                  if [ $(git status --porcelain | wc -l) -eq "0" ]; then
+                  numberOfChangesFiles=$(git status --porcelain | wc -l | tr -d '[:space:]')
+
+                  if [ "$numberOfChangesFiles" -gt "0" ]; then
                     NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
 
                     git add .
