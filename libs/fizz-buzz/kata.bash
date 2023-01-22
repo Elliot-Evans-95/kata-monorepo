@@ -12,7 +12,6 @@ NumberOfSuccessfulCommits=0
 HighestNumberOfSuccessfulCommits=0
 KataNotComplete=true
 FailMessage="FAIL"
-#RunTest=$( (npm run test "$Name"))
 
 while getopts "n:" arg; do
   case $arg in
@@ -109,32 +108,33 @@ while [ $KataNotComplete ]; do
   echo "When you have finished the kata Press the f key"
   printf "\n"
 
-  sleep $TimeInSeconds
+#  sleep $TimeInSeconds
+#  printf "time"
 
-read -r TestOutput <<< "$( npm run test "$Name")"
-#read -r TestOutput <<< "test"
-printf "\n"
-echo "OUTPUT: $TestOutput"
-printf "\n"
-echo "MESSAGE: $FailMessage"
-
-case $FailMessage in
-    *"$TestOutput"*)
-      HighestNumberOfSuccessfulCommits=$NumberOfSuccessfulCommits
-      NumberOfSuccessfulCommits=0
-      git checkout !(*.spec.*)
-      echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
-      printf "\n"
-      ;;
-    *)
-      NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
-      git commit -m "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
-      git push -u origin "$BranchName"
-      printf "\n"
-      echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
-      printf "\n"
-      ;;
-esac
-
+  read -rsn1 -t $TimeInSeconds input
+  if [ "$input" = "f" ]; then
+      echo "FINISHED !"
+      break
+  else
+        if npm run test "$Name" 2>&1 | grep -q "$FailMessage"; then
+                  HighestNumberOfSuccessfulCommits=$NumberOfSuccessfulCommits
+                  NumberOfSuccessfulCommits=0
+                  git stash push -m "$BranchName" "*.spec.*"
+                  git checkout -- .
+                  git apply --index 1
+                  echo "REVERTED | Number of commits made: $HighestNumberOfSuccessfulCommits"
+                  printf "\n"
+        else
+                  NumberOfSuccessfulCommits=$((NumberOfSuccessfulCommits+1))
+                  git add .
+                  git commit -m "kata(fizz-buzz): name - $GitName | tally - $NumberOfSuccessfulCommits"
+                  git push -u origin "$BranchName"
+                  printf "\n"
+                  echo "COMMITTED! | Number of commits made: $NumberOfSuccessfulCommits"
+                  printf "\n"
+        fi
+  fi
 
 done
+
+echo "Highest number of commits: $HighestNumberOfSuccessfulCommits | Time Taken: 00-00-00"
