@@ -1,5 +1,6 @@
 #!/bin/bash
 
+StartTime=$(date)
 LocalTime=$(date '+%d-%m-%Y')
 GitName=$(git config user.name)
 GitNameWithoutWhitespace=$(echo "$GitName" | tr -d '[:space:]')
@@ -60,7 +61,12 @@ echo "Auto Save must be turned on before continuing, is it turned on?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) break;;
-        No ) exit;;
+        No )
+          echo "TODO | Currently not implemented. Exiting..."
+          printf "\n"
+
+          exit
+        ;;
     esac
 done
 printf "\n"
@@ -69,7 +75,12 @@ echo "This script will create a branch called $BranchName to save your work, is 
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) break;;
-        No ) exit;;
+        No )
+          echo "TODO | Currently not implemented. Exiting..."
+          printf "\n"
+
+          exit
+        ;;
     esac
 done
 printf "\n"
@@ -78,7 +89,12 @@ echo "Lastly the default time to commit changes for this kata is $TimeInMinutes 
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) break;;
-        No ) exit;;
+        No )
+          echo "TODO | Currently not implemented. Exiting..."
+          printf "\n"
+
+          exit
+        ;;
     esac
 done
 printf "\n"
@@ -91,7 +107,12 @@ echo "Ready?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) break;;
-        No ) exit;;
+        No )
+          echo "TODO | Currently not implemented. Exiting..."
+          printf "\n"
+
+          exit
+        ;;
     esac
 done
 printf "\n"
@@ -151,4 +172,7 @@ while [ $KataNotComplete ]; do
 
 done
 
-echo "Highest number of commits: $HighestNumberOfSuccessfulCommits | Time Taken: 00-00-00"
+EndTime=$(date)
+TimeTaken=$(date -u -d @$(($(date -d "$StartTime" '+%s') - $(date -d "$EndTime" '+%s'))) '+%T')
+
+echo "Highest number of commits: $HighestNumberOfSuccessfulCommits | Time Taken: $TimeTaken"
