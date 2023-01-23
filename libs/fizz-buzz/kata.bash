@@ -1,7 +1,7 @@
 #!/bin/bash
 
-StartTime=$(date)
-LocalTime=$(date '+%d-%m-%Y')
+StartTime=$(date "+%s")
+LocalTime=$(date "+%d-%m-%Y")
 GitName=$(git config user.name)
 GitNameWithoutWhitespace=$(echo "$GitName" | tr -d '[:space:]')
 Name="fizz-buzz"
@@ -172,7 +172,9 @@ while [ $KataNotComplete ]; do
 
 done
 
-EndTime=$(date)
-TimeTaken=$(date -u -d @$(($(date -d "$StartTime" '+%s') - $(date -d "$EndTime" '+%s'))) '+%T')
+EndTime=$(date "+%s")
 
-echo "Highest number of commits: $HighestNumberOfSuccessfulCommits | Time Taken: $TimeTaken"
+TimeTakenInSeconds=$((EndTime-StartTime))
+TimeTakenFormatted=$(date -ju -f "%s" $TimeTakenInSeconds "+%H:%M:%S")
+
+echo "Highest number of commits: $HighestNumberOfSuccessfulCommits | Time Taken: $TimeTakenFormatted"
