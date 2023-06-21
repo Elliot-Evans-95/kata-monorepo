@@ -26,6 +26,7 @@
       "@kata-monorepo/string-calculator": [
         "libs/string-calculator/src/index.ts"
       ],
+      "@kata-monorepo/sweet-shop": ["libs/sweet-shop/src/index.ts"],
       "@kata-monorepo/tennis": ["libs/tennis/src/index.ts"],
       "@kata-monorepo/theatrical-players": [
         "libs/theatrical-players/src/index.ts"
