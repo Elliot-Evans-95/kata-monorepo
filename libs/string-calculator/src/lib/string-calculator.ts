@@ -1,3 +1,3 @@
 export function stringCalculator(): string {
-  return "string-calculator";
+  return "not-string-calculator";
 }
