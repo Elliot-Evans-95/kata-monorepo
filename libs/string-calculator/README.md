@@ -4,7 +4,7 @@ This library was generated with [Nx](https://nx.dev).
 
 ## Running unit tests
 
-Run `npx nx test string-calcunpxor --watch` to execute the unit tests via [Jest](https://jestjs.io).
+Run `npx nx test string-calculator --watch` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Running lint
 
