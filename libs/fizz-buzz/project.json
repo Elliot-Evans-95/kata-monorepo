@@ -18,6 +18,12 @@
         "jestConfig": "libs/fizz-buzz/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "kata": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "kata"
+      }
     }
   },
   "tags": []
