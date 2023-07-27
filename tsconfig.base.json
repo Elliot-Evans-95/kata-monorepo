@@ -32,6 +32,7 @@
         "libs/theatrical-players/src/index.ts"
       ],
       "@kata-monorepo/tic-tac-toe": ["libs/tic-tac-toe/src/index.ts"],
+      "@kata-monorepo/tic-tac-toe-node": ["libs/tic-tac-toe-node/src/index.ts"],
       "@kata-monorepo/wordle": ["libs/wordle/src/index.ts"]
     }
   },
