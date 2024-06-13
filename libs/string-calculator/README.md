@@ -4,7 +4,7 @@ This library was generated with [Nx](https://nx.dev).
 
 ## Running unit tests
 
-Run `nx test string-calculator` to execute the unit tests via [Jest](https://jestjs.io).
+Run `npx nx test string-calculator --watch` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Running lint
 
@@ -33,4 +33,4 @@ This kata is about incremental adding logic to one function.
 ## Before you start
 
 This kata has the expectation that you will incrementally work on the tasks (one step at a time).
-You have **1 hour** to work on this kata.
+You have **45 minutes** to work on this kata.
